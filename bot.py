@@ -4,7 +4,8 @@ import sqlite3
 import os
 import sys
 
-### CHANGE THESE
+### CHANGE THESE ###
+####################
 USERNAME = ""
 PASSWORD = ""
 PATHTODB = "/home/tim/baddiebot/db.db"
@@ -15,7 +16,8 @@ INTRODUCTION = "Other stories from /u/%s:"
 # Ending appears after posting the matching URLS; \n\n for newline
 ENDING = "**** \n\n ^(If you want to get notified as soon as %s posts a new story, )[^click ^here.](%s)" 
 
-### STOP CHANGING 
+### STOP CHANGING ###
+#####################
 
 # if USERNAME and PASSWORD isn't set the bot will use the environment variables
 # NOREPOST_USER for USERNAME
