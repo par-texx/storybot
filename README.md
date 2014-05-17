@@ -3,7 +3,7 @@
 ## Description
 
 BaddieBot works like the more famous BeetusBot. It posts other submissions by the same author on new submissions,
- it allows you to subscribe to a specific author and you will receive a new message everytime this author posts a new submission and you can unsubscribe from a specific author.
+ it allows you to subscribe to a specific author so that you will receive a new message every time this author posts a new submission. If you no longer want messages you can unsubscribe from a specific author.
 
 ## Installation
 
