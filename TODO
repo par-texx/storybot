@@ -17,7 +17,7 @@
 [0] [2] Add the ability to ignore posts with tag like [no] [meta] etc.
 [0] [2] Add a two column table for posting stories
 [2] [0] Remove old posts in checked_posts
-
+[2] [5] Integrate other bots like goompbot
 
 
 U = Urgency, 5 = high, 0 = low
