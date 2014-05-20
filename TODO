@@ -16,6 +16,8 @@
 [0] [2] Add the ability to limit the amount of stories to X or to stories which are younger than Y
 [0] [2] Add the ability to ignore posts with tag like [no] [meta] etc.
 [0] [2] Add a two column table for posting stories
+[2] [0] Remove old posts in checked_posts
+
 
 
 U = Urgency, 5 = high, 0 = low
