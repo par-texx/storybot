@@ -60,6 +60,7 @@ for new_message in r.get_unread(unset_has_mail=True, update_user=True):
                 c.execute("INSERT INTO subscriptions (writer, subscriber) VALUES (?, ?)", (writer, subscriber ))
                 conn.commit()
         except:
+            ## TODO track to error log
             pass
 
 
@@ -99,7 +100,19 @@ for x in new_sub:
         message = "Hello %s,\n\n/u/%s has a new submission.\n\n* [%s](%s)\n\n****\
                    \n\n^(If you want to unsubscribe just, ) [^click ^here.](%s)" % (subscriber[0], x.author.name, \
                                                                                   x.title, x.url, unsubscribe_url)
-        r.send_message(subscriber[0], subject, message)
+        
+        # this will catch an error if subscriber's account doesn't exist anymore
+        try:
+            r.send_message(subscriber[0], subject, message)
+        except praw.errors.InvalidUser:
+            # TODO track error
+            # remove user's subscriptions
+            c.execute("DELETE FROM subscriptions WHERE subscriber = ?", (subscriber[0], ))
+            conn.commit()
+        except:
+            # TODO create error log
+            pass
+
         time.sleep(3)
 
 
