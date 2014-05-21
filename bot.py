@@ -6,7 +6,7 @@ import sys
 import logging
 import ConfigParser
 
-
+# TODO put into file and from m import *
 config = ConfigParser.SafeConfigParser()
 config.read("config.ini")
 
@@ -40,11 +40,13 @@ if PASSWORD in ["password", ""]:
     except KeyError:
         sys.exit("Please add the password or set the environment variable STORYBOT_PASSWORD")
 
+### TODO End
 
 # login to Reddit
 r = praw.Reddit(user_agent=USER_AGENT)
 r.login(USERNAME, PASSWORD)
 
+### TODO maybe create db module with functions instead of SQL
 # connect to DB
 conn = sqlite3.connect(PATHTODB)
 c = conn.cursor()
@@ -102,8 +104,6 @@ for x in new_sub:
         unsubscribe_url = "http://www.reddit.com/message/compose/?to=%s&subject=unsubscribe&message=%s" % (USERNAME, unsub_msg)
 
         subject = MESSAGE_SUBJECT % (x.author.name)
-        
-        
         message = MESSAGE_MESSAGE % (subscriber[0], x.author.name, x.title, x.url, unsubscribe_url)
 
         # this will catch an error if subscriber's account doesn't exist anymore
@@ -125,6 +125,7 @@ for x in new_sub:
         time.sleep(3)
 
 
+    # TODO create a function for this
     # check for previous submissions
     results = r.search('author:"' + x.author.name + '"', subreddit=SUBREDDIT, sort="new")
 

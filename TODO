@@ -18,6 +18,7 @@
 [2] [0] Remove old posts in checked_posts
 [2] [5] Integrate other bots like goompbot
 [2] [2] Confirm subscriptions by sending message
+[2] [2] Clean up the code a bit
 
 
 U = Urgency, 5 = high, 0 = low
