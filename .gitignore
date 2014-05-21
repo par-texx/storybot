@@ -1,2 +1,3 @@
 db.db
 init.sh
+*.pyc

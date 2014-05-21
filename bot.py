@@ -5,42 +5,7 @@ import os
 import sys
 import logging
 import ConfigParser
-
-# TODO put into file and from m import *
-config = ConfigParser.SafeConfigParser()
-config.read("config.ini")
-
-## get variables
-USERNAME = config.get("reddit", "username")
-PASSWORD = config.get("reddit", "password")
-PATHTODB = config.get("technical", "pathtodb")
-USER_AGENT = config.get("technical", "user_agent")
-SUBREDDIT = config.get("reddit", "subreddit")
-# XXX replace workarounds for reddit => one new line transformed to two
-COMMENT_INTRODUCTION = config.get("comment", "introduction", raw = True).replace("\n", "\n\n")
-COMMENT_ENDING = config.get("comment", "ending", raw = True).replace("\n", "\n\n")
-MESSAGE_SUBJECT = config.get("message", "subject", raw = True)
-MESSAGE_MESSAGE = config.get("message", "message", raw = True).replace("\n", "\n\n")
-
-if config.get("technical", "debug") == "on":
-    logging.basicConfig(level=logging.DEBUG) 
-else:
-    logging.basicConfig(level=logging.ERROR) 
-
-# if USERNAME and PASSWORD isn't set the bot will use the environment variables
-if USERNAME in ["username", ""]:
-    try:
-        USERNAME = os.environ['STORYBOT_USERNAME']
-    except KeyError:
-        sys.exit("Please add the username or set the environment variable STORYBOT_USERNAME")
-
-if PASSWORD in ["password", ""]:
-    try:
-        PASSWORD = os.environ['STORYBOT_PASSWORD']
-    except KeyError:
-        sys.exit("Please add the password or set the environment variable STORYBOT_PASSWORD")
-
-### TODO End
+from handle_config import *
 
 # login to Reddit
 r = praw.Reddit(user_agent=USER_AGENT)
@@ -113,7 +78,6 @@ for x in new_sub:
             else:
                 # send messages only comments if DEBUG isn't on
                 r.send_message(subscriber[0], subject, message)
-            pass
         except praw.errors.InvalidUser:
             logging.error("Invalid User " + subscriber[0])
             # remove user's subscriptions
