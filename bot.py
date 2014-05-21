@@ -3,6 +3,7 @@ import time
 import sqlite3
 import os
 import sys
+import logging
 
 ### CHANGE THESE ###
 ####################
@@ -15,7 +16,7 @@ SUBREDDIT = "badpeoplestories"
 INTRODUCTION = "Other stories from /u/%s:"
 # Ending appears after posting the matching URLS; \n\n for newline
 ENDING = "**** \n\n ^(If you want to get notified as soon as %s posts a new story, )[^click ^here.](%s)" 
-
+logging.basicConfig(level=logging.ERROR) # logging.ERROR for productive systems, logging.DEBUG for testing
 ### STOP CHANGING ###
 #####################
 
@@ -26,13 +27,13 @@ if USERNAME == "":
     try:
         USERNAME = os.environ['STORYBOT_USERNAME']
     except KeyError:
-        sys.exit("Please add the username or set the environment variable BADDIEBOT_USERNAME")
+        sys.exit("Please add the username or set the environment variable STORYBOT_USERNAME")
 
 if PASSWORD == "":
     try:
         PASSWORD = os.environ['STORYBOT_PASSWORD']
     except KeyError:
-        sys.exit("Please add the password or set the environment variable BADDIEBOT_PASSWORD")
+        sys.exit("Please add the password or set the environment variable STORYBOT_PASSWORD")
 
 
 # login to Reddit
@@ -59,10 +60,8 @@ for new_message in r.get_unread(unset_has_mail=True, update_user=True):
             if c.fetchone() is None:
                 c.execute("INSERT INTO subscriptions (writer, subscriber) VALUES (?, ?)", (writer, subscriber ))
                 conn.commit()
-        except:
-            ## TODO track to error log
-            pass
-
+        except Exception as e:
+            logging.error(e)
 
     if new_message.subject == "unsubscribe":
         try:
@@ -103,15 +102,19 @@ for x in new_sub:
         
         # this will catch an error if subscriber's account doesn't exist anymore
         try:
-            r.send_message(subscriber[0], subject, message)
+            if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
+                logging.debug(m)
+            else:
+                # send messages only comments if DEBUG isn't on
+                r.send_message(subscriber[0], subject, message)
+            pass
         except praw.errors.InvalidUser:
-            # TODO track error
+            logging.error("Invalid User " + subscriber[0])
             # remove user's subscriptions
             c.execute("DELETE FROM subscriptions WHERE subscriber = ?", (subscriber[0], ))
             conn.commit()
-        except:
-            # TODO create error log
-            pass
+        except Exception as e:
+            logging.error(e)
 
         time.sleep(3)
 
@@ -139,9 +142,12 @@ for x in new_sub:
             m += "\n\n * [%s](%s)" % f
         m += "\n\n"
         m += ENDING % (x.author.name, subscribe_url)
-
-
-        x.add_comment(m)
+        
+        if logging.getLogger().getEffectiveLevel() <= 10:
+            logging.debug(m)
+        else:
+            # write comments only if DEBUG isn't on
+            x.add_comment(m)
        
     # Insert id into the database to that it won't be rechecked
     c.execute("INSERT INTO checked_ids VALUES (?)", (x.id, ))
