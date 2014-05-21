@@ -1,8 +1,8 @@
-# BaddieBot for Reddit
+# StoryBot for Reddit
 
 ## Description
 
-BaddieBot works like the more famous BeetusBot. It posts other submissions by the same author on new submissions,
+StoryBot works like the more famous BeetusBot. It posts other submissions by the same author on new submissions,
  it allows you to subscribe to a specific author so that you will receive a new message every time this author posts a new submission. If you no longer want messages you can unsubscribe from a specific author.
 
 ## Installation
@@ -22,9 +22,9 @@ Open the bot.py and edit all variables in the "CHANGE THESE" section:
 
     USERNAME = "" # username of your bot's reddit account
     PASSWORD = "" # password of your bot's reddit account
-    PATHTODB = "/home/test/baddiebot/db.db" # path to your db.db which should be the same path as your bot.py
-    USER_AGENT = "BaddieBot by /u/tst__" # user agent of the bot
-    SUBREDDIT = "badpeoplestories" # subreddit in which the bot should work
+    PATHTODB = "/home/test/StoryBot/db.db" # path to your db.db which should be the same path as your bot.py
+    USER_AGENT = "StoryBot by /u/tst__" # user agent of the bot
+    SUBREDDIT = "mysubreddit" # subreddit in which the bot should work
     # Introduction appears before posting the matching URLs
     INTRODUCTION = "Other stories from /u/%s:"
     # Ending appears after posting the matching URLS; \n\n for newline

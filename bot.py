@@ -8,8 +8,8 @@ import sys
 ####################
 USERNAME = ""
 PASSWORD = ""
-PATHTODB = "/home/tim/baddiebot/db.db"
-USER_AGENT = "BaddieBot by /u/tst__"
+PATHTODB = "/home/tim/storybot/db.db"
+USER_AGENT = "StoryBot by /u/tst__"
 SUBREDDIT = "badpeoplestories"
 # Introduction appears before posting the matching URLs
 INTRODUCTION = "Other stories from /u/%s:"
@@ -24,13 +24,13 @@ ENDING = "**** \n\n ^(If you want to get notified as soon as %s posts a new stor
 # NOREPOST_PASSWORD for PASSWORD
 if USERNAME == "":
     try:
-        USERNAME = os.environ['BADDIEBOT_USERNAME']
+        USERNAME = os.environ['STORYBOT_USERNAME']
     except KeyError:
         sys.exit("Please add the username or set the environment variable BADDIEBOT_USERNAME")
 
 if PASSWORD == "":
     try:
-        PASSWORD = os.environ['BADDIEBOT_PASSWORD']
+        PASSWORD = os.environ['STORYBOT_PASSWORD']
     except KeyError:
         sys.exit("Please add the password or set the environment variable BADDIEBOT_PASSWORD")
 
