@@ -18,17 +18,15 @@ which can be easily installed using pip
 
 ## Configuration
 
-Open the bot.py and edit all variables in the "CHANGE THESE" section: 
+Open the config.ini and edit it accordingly. These are the things you have to edit:
 
-    USERNAME = "" # username of your bot's reddit account
-    PASSWORD = "" # password of your bot's reddit account
-    PATHTODB = "/home/test/StoryBot/db.db" # path to your db.db which should be the same path as your bot.py
-    USER_AGENT = "StoryBot by /u/tst__" # user agent of the bot
-    SUBREDDIT = "mysubreddit" # subreddit in which the bot should work
-    # Introduction appears before posting the matching URLs
-    INTRODUCTION = "Other stories from /u/%s:"
-    # Ending appears after posting the matching URLS; \n\n for newline
-    ENDING = "**** \n\n ^(If you want to get notified as soon as %s posts a new story, )[^click ^here.](%s)"  
+    [reddit]
+    username=username ; reddit username of your bot
+    password=password ; reddit password of your bot
+    subreddit=badpeoplestories ; subreddit in which the bot should work
+
+    [technical]
+    pathtodb=/home/tim/storybot/db.db ; path to your bot's database, just use your bot's directory + db.db
 
 ## Usage
 
@@ -43,3 +41,4 @@ it will crawl the /new page and check each new submissions. For each submission 
 ## Requests / Questions
 
 If you have any requests or actions feel free to open an issue, message me on reddit ([/u/tst__](http://www.reddit.com/message/compose/?to=tst__)) or write me an email.
+
