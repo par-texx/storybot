@@ -2,13 +2,13 @@
 ==Features==
 [2] [3] add a subscribe link to users who submitted the first time => new individual text
 
-[2] [0] Remove deleted stories from the list => write (deleted) after link
-
 [2] [2] list the subscriptions  => combine with confirmation
 
 [2] [2] Confirm subscriptions by sending message
 
 [0] [3] Writers can request how many subscribers they have
+
+[2] [0] Remove deleted stories from the list => write (deleted) after link
 
 [0] [2] Add the ability to ignore posts with tag like [no] [meta] etc.
 
