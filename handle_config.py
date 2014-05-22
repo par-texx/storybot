@@ -15,6 +15,7 @@ SUBREDDIT = config.get("reddit", "subreddit")
 # XXX replace workarounds for reddit => one new line transformed to two
 COMMENT_INTRODUCTION = config.get("comment", "introduction", raw = True).replace("\n", "\n\n")
 COMMENT_ENDING = config.get("comment", "ending", raw = True).replace("\n", "\n\n")
+COMMENT_FIRSTPOST = config.get("comment", "firstpost", raw = True).replace("\n", "\n\n")
 MESSAGE_SUBJECT = config.get("message", "subject", raw = True)
 MESSAGE_MESSAGE = config.get("message", "message", raw = True).replace("\n", "\n\n")
 

@@ -104,10 +104,11 @@ for x in new_sub:
         else:
             found.append((" ".join(y.title.splitlines()), y.permalink))
     
+    # subscription url
+    sub_msg = "subscribe %s" % x.author.name
+    subscribe_url = "http://www.reddit.com/message/compose/?to=%s&subject=subscribe&message=%s" % (USERNAME, sub_msg)
     # if we found reposts we're going to add a comment to the submission
     if found:
-        sub_msg = "subscribe %s" % x.author.name
-        subscribe_url = "http://www.reddit.com/message/compose/?to=%s&subject=subscribe&message=%s" % (USERNAME, sub_msg)
         m = COMMENT_INTRODUCTION % (x.author.name)
         for f in found:
             m += "\n\n * [%s](%s)" % f
@@ -119,6 +120,18 @@ for x in new_sub:
         else:
             # write comments only if DEBUG isn't on
             x.add_comment(m)
+    # no submissions found, that means new poster
+    else:
+        m = COMMENT_FIRSTPOST % (SUBREDDIT, USERNAME)
+        m += "\n\n"
+        m += COMMENT_ENDING % (x.author.name, subscribe_url)
+        
+        if logging.getLogger().getEffectiveLevel() <= 10:
+            logging.debug(m)
+        else:
+            # write comments only if DEBUG isn't on
+            x.add_comment(m)
+       
        
     # Insert id into the database to that it won't be rechecked
     c.execute("INSERT INTO checked_ids VALUES (?)", (x.id, ))
