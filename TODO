@@ -1,24 +1,29 @@
  U   C
-[2] [3] add a subscribe link to new user
+==Features==
+[2] [3] add a subscribe link to users who submitted the first time
 [2] [2] allow the /u/ notation in subscriptions / unsubscriptions
 [2] [3] maybe allow to subscribe to a list of users?
 [2] [2] list the subscriptions
-[2] [4] subscribe by typing subscribe
+[2] [4] subscribe by replying "subscribe" to the bot's comment
 [0] [2] add ability for authors to add other links?
-[0] [5] add a web interface so that people can easily create their own
-        bot (handling config), get info on the latest checks and look up
-        subscriptions, set check rate
 [0] [3] Writers can request how many subscribers they have
 [0] [2] Add date or X days/years ago
-[2] [0] Remove deleted stories
+[2] [0] Remove deleted stories from the list
 [0] [2] Add the ability to limit the amount of stories to X or to stories which 
         are younger than Y
 [0] [2] Add the ability to ignore posts with tag like [no] [meta] etc.
 [0] [2] Add a two column table for posting stories
-[2] [0] Remove old posts in checked_posts
-[2] [5] Integrate other bots like goompbot
 [2] [2] Confirm subscriptions by sending message
+
+==Coding==
 [2] [2] Clean up the code a bit
+[2] [0] Remove old posts in checked_posts
+
+==Meta==
+[0] [5] add a web interface so that people can easily create their own
+        bot (handling config), get info on the latest checks and look up
+        subscriptions, set check rate
+[2] [5] Integrate other bots like goompbot
 
 
 U = Urgency, 5 = high, 0 = low
