@@ -3,13 +3,15 @@ import logging
 import sys
 import os
 
+PATHTO = os.path.dirname(os.path.realpath(__file__))
+
+
 config = ConfigParser.SafeConfigParser()
-config.read("config.ini")
+config.read(os.path.join(PATHTO, "config.ini"))
 
 ## get variables
 USERNAME = config.get("reddit", "username")
 PASSWORD = config.get("reddit", "password")
-PATHTODB = config.get("technical", "pathtodb")
 USER_AGENT = config.get("technical", "user_agent")
 SUBREDDIT = config.get("reddit", "subreddit")
 # XXX replace workarounds for reddit => one new line transformed to two

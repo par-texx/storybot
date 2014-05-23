@@ -26,7 +26,6 @@ Open the config.ini and edit it accordingly. These are the things you have to ed
     subreddit=badpeoplestories ; subreddit in which the bot should work
 
     [technical]
-    pathtodb=/home/tim/storybot/db.db ; path to your bot's database, just use your bot's directory + db.db
     debug=on ; set debug=off to allow your bot to comment and send messages
 
 ## Usage

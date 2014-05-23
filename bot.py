@@ -13,7 +13,7 @@ r.login(USERNAME, PASSWORD)
 
 ### TODO maybe create db module with functions instead of SQL
 # connect to DB
-conn = sqlite3.connect(PATHTODB)
+conn = sqlite3.connect(os.path.join(PATHTO, "db.db"))
 c = conn.cursor()
 
 # create the tables if it don't exist
